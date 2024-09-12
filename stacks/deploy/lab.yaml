@@ -1,0 +1,52 @@
+vars:
+  stage: lab
+
+#import:
+#  - catalog/general
+
+components:
+  terraform:
+    vpc:
+      metadata: 
+        componet: "vpc"        
+      vars:
+        create_database_subnet_group: true
+        create_database_subnet_route_table: true
+        enable_nat_gateway: true
+        single_nat_gateway: true
+        one_nat_gateway_per_az: false
+    
+        region: us-east-1
+        environment: Lab 
+        owners: aws
+        name: vpc-lab-terraform
+      
+        cidr: 10.0.0.0/16 
+        azs:
+          - us-east-1c
+          - us-east-1d
+        public_subnets:
+          - 10.0.1.0/24
+          - 10.0.3.0/24
+        private_subnets:
+          - 10.0.2.0/24
+          - 10.0.4.0/24
+        database_subnets:
+          - 10.0.151.0/24
+          - 10.0.152.0/24
+    ssm:
+      metadata: 
+         componet: "ssm"
+      vars:
+        s3_bucket: ssm
+        vpc_id: '{{ (atmos.Component "vpc" .stack).outputs.vpc_id }}' 
+        cidr: 10.0.0.0/16 
+    test:
+       metadata:
+          componet: "test"
+       vars:
+        vpc_id: '{{ (atmos.Component "vpc" .stack).outputs.vpc_id }}' 
+        private_subnets: '{{ toRawJson ((atmos.Component "vpc" .stack).outputs.private_subnets) }}'
+
+
+        
