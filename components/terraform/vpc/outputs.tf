@@ -26,13 +26,6 @@ output "private_subnets" {
    value       = module.vpc.private_subnets
 }
 
-#output "private_subnets"{
-#  description = "Subnet ID's for Private"
-#  value = jsoneconde([
-#     for i in module.vpc.private_subnets : i
-#  ]
-#  }
-
 # VPC Public Subnets
 output "public_subnets" {
   description = "A list of public subnets inside the VPC"

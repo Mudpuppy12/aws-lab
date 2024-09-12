@@ -11,7 +11,16 @@ variable "stage" {
 }
 
 variable "private_subnets" {
-    type = list(string)
-    default = []
-    
+    type = string
+    default = ""
+
+}
+
+locals {
+  private_subnets= jsondecode(var.private_subnets)
+
+}
+
+output nice {
+    value = local.private_subnets
 }
