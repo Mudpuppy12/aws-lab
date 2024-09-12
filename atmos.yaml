@@ -31,5 +31,5 @@ stacks:
   
 logs:
   file: "/dev/stderr"
-  level: Trace
+  level: Info
 

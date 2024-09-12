@@ -35,6 +35,10 @@ components:
           - 10.0.151.0/24
           - 10.0.152.0/24
     ssm:
+      settings:
+        depends_on:
+          1:
+            component: "vpc"          
       metadata: 
          componet: "ssm"
       vars:
