@@ -15,7 +15,7 @@ module "vpc" {
   create_database_subnet_route_table = var.create_database_subnet_route_table
 
   create_database_internet_gateway_route = false
-  create_database_nat_gateway_route = false
+  create_database_nat_gateway_route      = false
 
   # NAT Gateways - Outbound Communication
   enable_nat_gateway     = var.enable_nat_gateway
@@ -39,7 +39,7 @@ module "vpc" {
   # Additional tags for the private subnets
   private_subnet_tags = {
     Name = "VPC Lab Private Subnets",
-    SSM = "Y"
+    SSM  = "Y"
   }
   # Additional tags for the database subnets
   database_subnet_tags = {

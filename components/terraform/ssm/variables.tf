@@ -36,8 +36,8 @@ variable "team" {
 
 variable "vpc_id" {
   type    = string
-  default  = ""
-  }
+  default = ""
+}
 
 variable "cidr" {
   description = "VPC CIDR Block"

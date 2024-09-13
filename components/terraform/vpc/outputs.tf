@@ -23,7 +23,7 @@ output "vpc_cidr_block" {
 # VPC Private Subnets
 output "private_subnets" {
   description = "A list of private subnets inside the VPC"
-   value       = module.vpc.private_subnets
+  value       = module.vpc.private_subnets
 }
 
 # VPC Public Subnets

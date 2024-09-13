@@ -19,6 +19,6 @@ resource "aws_security_group" "http_allow" {
   tags = {
     Name = "SSM Default HTTP_ALLOW Security Group"
   }
-  vpc_id =var.vpc_id
+  vpc_id = var.vpc_id
 
 }

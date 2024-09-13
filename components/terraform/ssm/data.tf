@@ -17,6 +17,6 @@ data "aws_subnets" "ssm" {
   }
 
   tags = {
-    SSM  = "Y"
+    SSM = "Y"
   }
 }

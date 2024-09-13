@@ -1,8 +1,8 @@
 
 variable "vpc_id" {
   type    = string
-  default  = ""
-  }
+  default = ""
+}
 
 variable "stage" {
   description = "Stage where it will be deployed"
@@ -11,16 +11,16 @@ variable "stage" {
 }
 
 variable "private_subnets" {
-    type = string
-    default = ""
+  type    = string
+  default = ""
 
 }
 
 locals {
-  private_subnets= jsondecode(var.private_subnets)
+  private_subnets = jsondecode(var.private_subnets)
 
 }
 
-output nice {
-    value = local.private_subnets
+output "nice" {
+  value = local.private_subnets
 }
