@@ -9,7 +9,7 @@ SSM connections.
 # Buildout
    ``` # atmos workflow buildall -f buildall ```
 # Teardown
-   ``` # atmos workdlow teardown -f teardown ```
+   ``` # atmos workflow teardown -f teardown ```
 
 It does not teardown the codebuild project, you can uncomment this to do so. Keep in mind it will not
 removed the github webhook. It must be deleted manually. I don't tear this down usually.
@@ -37,10 +37,6 @@ It will also create the webhook into the repository.
 You will need to create a Github Token Secret and reference it in lab.yml. Also update
 the codebuild/main.tf for the Repo that will recieve the code hook.
 
-
-# TODO:
-* Automatic backend.tf generation: Currently the S3 bucket and DynamoDB is setup by hand.
-* Automatic provider.tf generation: Currently this is static.
 
 # Links
 * https://atmos.tools/
