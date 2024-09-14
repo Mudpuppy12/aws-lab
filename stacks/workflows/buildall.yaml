@@ -1,0 +1,13 @@
+name: Stand Up test Lab
+description: Run terraform apply on all componets to build out the lab
+
+workflows:
+  buildall:
+    description: |
+       Run 'terraform apply' on all components
+    steps:
+      - command: terraform apply vpc -s lab -auto-approve
+      - command: terraform apply ssm -s lab -auto-approve
+      - command: terraform apply ec2 -s lab -auto-approve
+      - command: terraform apply codebuild -s lab -auto-approve
+      

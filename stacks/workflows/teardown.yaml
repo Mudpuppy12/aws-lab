@@ -1,0 +1,12 @@
+name: Teardown test Lab
+description: Run terraform destroy on all componets to build out the lab
+
+workflows:
+  buildall:
+    description: |
+       Run 'terraform destroy' on all components
+    steps:
+      - command: terraform destroy ec2 -s lab -auto-approve
+      - command: terraform destroy ssm -s lab -auto-approve
+      - command: terraform destroy vpc -s lab -auto-approve
+     # -command: terraform apply codebuild -s lab -auto-approve

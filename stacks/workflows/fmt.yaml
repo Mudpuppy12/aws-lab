@@ -1,0 +1,13 @@
+name: Format the componets
+description: Run terraform fmt on files
+
+workflows:
+  fmt:
+    description: |
+       Run 'terraform fmt' on all components
+    steps:
+      - command: terraform fmt vpc -s lab
+      - command: terraform fmt ssm -s lab
+      - command: terraform fmt ec2 -s lab
+      - command: terraform fmt codebuild -s lab
+      - command: terraform fmt test -s lab
