@@ -4,6 +4,11 @@ This was created using the atmos tooling for Terraform.
 
 # Buildout
    ``` # atmos workflow buildall -f buildall ```
+# Teardown
+   ``` # atmos workdlow teardown -f teardown ```
+
+It does not teardown the codebuild project, you can uncomment this to do so. Keep in mind it will not
+removed the github webhook. It must be deleted manually. I don't tear this down usually.
 
 ## VPC
 This will create a VPC with two public subnets, two private subnets, and two Database Subnets. It will
@@ -29,6 +34,8 @@ You will need to create a Github Token Secret and reference it in lab.yml. Also 
 the codebuild/main.tf for the Repo that will recieve the code hook.
 
 
+# TODO:
+* Automatic backend.tf generation: Currently the S3 bucket and DynamoDB is setup by hand.
 
 # Links
 * https://atmos.tools/
