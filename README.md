@@ -40,6 +40,7 @@ the codebuild/main.tf for the Repo that will recieve the code hook.
 
 # TODO:
 * Automatic backend.tf generation: Currently the S3 bucket and DynamoDB is setup by hand.
+* Automatic provider.tf generation: Currently this is static.
 
 # Links
 * https://atmos.tools/
