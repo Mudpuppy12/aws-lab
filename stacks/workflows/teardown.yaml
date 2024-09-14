@@ -9,4 +9,5 @@ workflows:
       - command: terraform destroy ec2 -s lab -auto-approve
       - command: terraform destroy ssm -s lab -auto-approve
       - command: terraform destroy vpc -s lab -auto-approve
+      - command: terraform destroy oidc -s lab -auto-approve
      # -command: terraform apply codebuild -s lab -auto-approve

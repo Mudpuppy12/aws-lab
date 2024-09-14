@@ -11,3 +11,4 @@ workflows:
       - command: terraform fmt ec2 -s lab
       - command: terraform fmt codebuild -s lab
       - command: terraform fmt test -s lab
+      - command: terraform fmt oidc -s lab

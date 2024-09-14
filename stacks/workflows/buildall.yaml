@@ -10,4 +10,6 @@ workflows:
       - command: terraform apply ssm -s lab -auto-approve
       - command: terraform apply ec2 -s lab -auto-approve
       - command: terraform apply codebuild -s lab -auto-approve
+      - command: terraform apply oidc -s lab -auto-approve
+      
       
