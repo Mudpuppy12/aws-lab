@@ -12,7 +12,7 @@ resource "aws_security_group" "ec2_server_sg_tf" {
     protocol    = "all"
     cidr_blocks = [var.cidr]
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
