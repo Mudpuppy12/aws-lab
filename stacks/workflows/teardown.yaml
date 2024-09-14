@@ -10,4 +10,6 @@ workflows:
       - command: terraform destroy ssm -s lab -auto-approve
       - command: terraform destroy vpc -s lab -auto-approve
       - command: terraform destroy oidc -s lab -auto-approve
+
+     # Due to repo Webhook, Don't bother tearing this down for costs
      # -command: terraform apply codebuild -s lab -auto-approve
