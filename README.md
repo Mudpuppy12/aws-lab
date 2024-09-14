@@ -4,7 +4,7 @@ This was created using the atmos tooling for Terraform.
 
 This lab is used in conjunction with aws-github repo to deploy ansible playbooks into the
 EC2 instances using github actions and a OIDC github provider. The deployment is done over
-SSM connections
+SSM connections.
 
 # Buildout
    ``` # atmos workflow buildall -f buildall ```
