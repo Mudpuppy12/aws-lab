@@ -1,1 +1,9 @@
-# Not implemented yet
+terraform:
+  backend_type: s3
+  backend:
+    s3:
+      encrypt: true
+      bucket: "terraform-tfstate-zz12"
+      dynamodb_table: "terraform_tf_lockid"
+      key: "terraform.tfstate"
+      region: "us-east-1"

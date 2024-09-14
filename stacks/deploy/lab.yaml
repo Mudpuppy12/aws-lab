@@ -2,8 +2,8 @@ vars:
   stage: lab
   environment: Lab 
 
-#import:
-#  - catalog/general
+import:
+  - catalog/global
 
 components:
   terraform:
