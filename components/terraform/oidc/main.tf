@@ -5,7 +5,7 @@ module "github-oidc" {
   create_oidc_provider = true
   create_oidc_role     = true
 
-  repositories              = ["Mudpuppy12/*"]
+  repositories              = var.repos
   oidc_role_attach_policies = [aws_iam_policy.deploy.arn]
 }
 
