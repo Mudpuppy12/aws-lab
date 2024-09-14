@@ -1,4 +1,7 @@
 terraform:
+  providers:
+     aws:
+       region: "us-east-1"
   backend_type: s3
   backend:
     s3:
