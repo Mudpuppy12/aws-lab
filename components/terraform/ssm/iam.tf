@@ -1,7 +1,8 @@
 #### Create the IAM role for the instance profile ####
 
 resource "aws_iam_role" "ssm_role" {
-  name = "${var.ssm_role}-${var.team}"
+  
+  name = "${var.environment}-${var.ssm_role}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

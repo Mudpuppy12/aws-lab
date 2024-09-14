@@ -18,7 +18,6 @@ components:
         one_nat_gateway_per_az: false
     
         region: us-east-1
-      
         owners: aws
         name: vpc-lab-terraform
       
@@ -53,11 +52,26 @@ components:
         vpc_id: '{{ (atmos.Component "vpc" .stack).outputs.vpc_id }}' 
         private_subnets: '{{ toRawJson ((atmos.Component "vpc" .stack).outputs.private_subnets) }}'
     codebuild:
-       metadata:
+      metadata:
           componet: "codebuild"
-       vars:
-        secret_token_arn : "arn:aws:secretsmanager:us-east-1:106613608949:secret:GITHUB-TOKEN-BzZcBD"
-        
+      vars:
+        secret_token_arn : "arn:aws:secretsmanager:us-east-1:106613608949:secret:GITHUB-TOKEN-BzZcBD"     
+    ec2:
+      settings:
+        depends_on:
+          1:
+            component: "vpc" 
+          2:
+            component: "ssm" 
+      metadata:
+          componet: "ec2"
+      vars:
+        ami: "ami-04a81a99f5ec58529"
+        private_subnets: '{{ toRawJson ((atmos.Component "vpc" .stack).outputs.private_subnets) }}'
+        cidr: '{{ (atmos.Component "vpc" .stack).outputs.vpc_cidr_block }}'
+        vpc_id: '{{ (atmos.Component "vpc" .stack).outputs.vpc_id }}'
+        key_name: "Key1"
+        ssm_role_name: '{{ (atmos.Component "ssm" .stack).outputs.ssm_role_name }}'
 
 
 

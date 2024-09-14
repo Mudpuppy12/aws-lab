@@ -13,7 +13,7 @@ variable "s3_log_bucket_id" {
 variable "ssm_role" {
   type        = string
   description = "The name of the role to be assigned to the instance profile:"
-  default     = ""
+  default     = "SSM"
 }
 
 variable "cloudwatch_policy_arn" {
@@ -46,6 +46,12 @@ variable "cidr" {
 }
 
 variable "stage" {
+  description = "Stage where it will be deployed"
+  type        = string
+  default     = ""
+}
+
+variable "environment" {
   description = "Stage where it will be deployed"
   type        = string
   default     = ""
