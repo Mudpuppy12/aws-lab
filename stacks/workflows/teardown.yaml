@@ -2,7 +2,7 @@ name: Teardown test Lab
 description: Run terraform destroy on all componets to build out the lab
 
 workflows:
-  buildall:
+  teardown:
     description: |
        Run 'terraform destroy' on all components
     steps:
