@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "deploy" {
   statement {
     effect = "Allow"
     actions = [
-      "s3:*", "dynamodb:*",
+       "s3:*", "dynamodb:*", "ec2:*", "ssm:*", "kms:*", 
     ]
     resources = ["*"]
   }
