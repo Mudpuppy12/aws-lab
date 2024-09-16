@@ -26,19 +26,5 @@ jobs:
           role-to-assume: ${{ env.ROLE_TO_ASSUME }}
           role-session-name: ${{ env.ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
-          
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout Git Repo
-        uses: actions/checkout@v4
 
-      - name: Fetch Terraform
-        uses: hashicorp/setup-terraform@v3
 
-      - name: Setup Atmos
-        uses: cloudposse/github-action-setup-atmos
-   
-      - name: Test Versions
-        shell: bash
-        run: |
-             atmos version
-             terraform -v
