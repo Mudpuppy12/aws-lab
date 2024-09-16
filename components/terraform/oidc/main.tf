@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "deploy" {
     effect = "Allow"
     actions = [
       "s3:*", "dynamodb:*", "ec2:*", "ssm:*", "kms:*", "rds:*", "iam:*", "logs:*", "secretsmanager:*",
-      "eleasticache:*", "elasticloadbalancing:*"
+      "eleasticache:*", "elasticloadbalancing:*", "codebuild:*"
     ]
     resources = ["*"]
   }
