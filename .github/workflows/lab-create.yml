@@ -26,5 +26,11 @@ jobs:
           role-to-assume: ${{ env.ROLE_TO_ASSUME }}
           role-session-name: ${{ env.ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
+          
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout the Code
+        uses: actions/checkout@v4
 
+      - name: Fetch Terraform
+        uses: hashicorp/setup-terraform@v3
 
