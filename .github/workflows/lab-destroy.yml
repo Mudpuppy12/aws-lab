@@ -37,7 +37,7 @@ jobs:
       - name: Setup Atmos
         uses: cloudposse/github-action-setup-atmos@v2
    
-      - name: Run the workflow for buildall
+      - name: Run the workflow for teardown
         shell: bash
         run: |
              atmos workflow teardown -f teardown
