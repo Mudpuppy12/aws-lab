@@ -34,3 +34,11 @@ jobs:
       - name: Fetch Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Setup Atmos
+        uses: cloudposse/github-action-setup-atmos@v2
+   
+      - name: Test Versions
+        shell: bash
+        run: |
+             atmos version
+             terraform -v
