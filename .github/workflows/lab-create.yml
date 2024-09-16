@@ -40,5 +40,4 @@ jobs:
       - name: Test Versions
         shell: bash
         run: |
-             atmos version
-             terraform -v
+             atmos workflow buildall -f buildall
