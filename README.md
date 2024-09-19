@@ -30,8 +30,11 @@ It will stand up two tiny EC2 instances in the private subnets.
 It will create an Identify provider for Github, allowing gitub actions to deploy into the lab
 environment
 
+## ELB
+Comming Soon
+
 ## Codebuild
-This will setup a codebuild project that will fire up a github runner for deployments into the VCC.
+This will setup a codebuild project that will fire up a github runner for deployments into the VPC.
 It will also create the webhook into the repository. 
 
 You will need to create a Github Token Secret and reference it in lab.yml. Also update
