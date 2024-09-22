@@ -46,12 +46,6 @@ resource "aws_iam_policy" "ec2_policy" {
   })
 }
 
-resource "aws_iam_policy_attachment" "s3_attach" {
-  name       = "ssm-${var.environment}-s3-put"
-  roles      = [aws_iam_role.ssm_role.name]
-  policy_arn = aws_iam_policy.ec2_policy.arn
-
-}
 
 #### Create policy to allow instance role to use the CloudWatch key and SSM preference key to encrypt/decrypt data ####
 
@@ -75,20 +69,23 @@ resource "aws_iam_policy" "kms_policy" {
 
 #### Attach AWS and Customer managed policies to the IAM role ####
 
-resource "aws_iam_policy_attachment" "ssm-attach" {
-  name       = "managed-ssm-${var.environment}-policy-attach"
-  roles      = [aws_iam_role.ssm_role.name]
+resource "aws_iam_role_policy_attachment" "ssm-attach" {
+  role      = aws_iam_role.ssm_role.name
   policy_arn = var.ssm_policy_arn
 }
 
-resource "aws_iam_policy_attachment" "cloudwatch-attach" {
-  name       = "managed-cloudwatch-${var.environment}-policy-attach"
-  roles      = [aws_iam_role.ssm_role.name]
+resource "aws_iam_role_policy_attachment" "cloudwatch-attach" {
+  role      = aws_iam_role.ssm_role.name
   policy_arn = var.cloudwatch_policy_arn
 }
 
-resource "aws_iam_policy_attachment" "kms-attach" {
-  name       = "ssm-kms-${var.environment}-policy-attach"
-  roles      = [aws_iam_role.ssm_role.name]
+resource "aws_iam_role_policy_attachment" "kms-attach" {
+  role      = aws_iam_role.ssm_role.name
   policy_arn = aws_iam_policy.kms_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "s3_attach" {
+  role     = aws_iam_role.ssm_role.name
+  policy_arn = aws_iam_policy.ec2_policy.arn
+
 }
