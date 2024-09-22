@@ -1,6 +1,6 @@
 locals {
   region = data.aws_region.current.name
-  name = var.cluster_name
+  name   = var.cluster_name
   # More comples variable passing requires decode
 
   private_subnets = jsondecode(var.private_subnets)
@@ -8,7 +8,7 @@ locals {
   intra_subnets   = jsondecode(var.intra_subnets)
 
   cluster_version = "1.30"
-    tags = {
+  tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }  

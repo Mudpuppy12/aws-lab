@@ -1,10 +1,10 @@
 variable "region" {
-    default = "us-east-1"
-    type        = string
+  default = "us-east-1"
+  type    = string
 }
 
 variable "cluster_name" {
-    type        = string
+  type = string
 }
 
 variable "stage" {
@@ -20,28 +20,28 @@ variable "environment" {
 }
 
 variable "private_subnets" {
-  type    = string
+  type        = string
   description = "Private VPC Subnets"
-  default = ""
+  default     = ""
 
 }
 
 variable "public_subnets" {
   description = "Public VPC Subnets"
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
 
 }
 
 variable "intra_subnets" {
   description = "Intra/Control subnets"
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
 
 }
 
 variable "vpc_id" {
   description = "VPC ID"
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
 }
