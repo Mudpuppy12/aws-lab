@@ -7,9 +7,21 @@ import:
 
 components:
   terraform:
+    
     eks-vpc:
       metadata: 
         componet: "eks-vpc"        
       vars:    
         cluster_name: eks-lab-terraform
         cidr: 10.1.0.0/16 
+    eks:
+      mdetadata:
+        components: "eks"
+      vars:
+        vpc_id: '{{ (atmos.Component "eks-vpc" .stack).outputs.vpc_id }}'
+        private_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.private_subnets) }}'
+        public_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.public_subnets) }}'
+        intra_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.intra_subnets) }}'
+        cluster_name: '{{ (atmos.Component "eks-vpc" .stack).outputs.cluster_name }}'
+
+

@@ -22,3 +22,10 @@ output "intra_subnets" {
   description = "Intra subnet ids"
   value       = module.vpc.intra_subnets
 }
+
+output "cluster_name" {
+  description = "Cluster name"
+  value       = var.cluster_name
+  
+}
+
