@@ -2,14 +2,21 @@ name: Stand Up test Lab
 description: Run terraform apply on all componets to build out the lab
 
 workflows:
+
+  # Generic Lab (EC2 Instances)
   buildall:
     description: |
-       Run 'terraform apply' on all components
+       Run 'terraform apply' on all Lab components
     steps:
       - command: terraform apply vpc -s lab -auto-approve
       - command: terraform apply ssm -s lab -auto-approve
       - command: terraform apply ec2 -s lab -auto-approve
       - command: terraform apply codebuild -s lab -auto-approve
-      - command: terraform apply oidc -s lab -auto-approve
-      
-      
+      - command: terraform apply oidc -s lab -auto-approve    
+  # EKS Lab (K8's)
+  eks-buildall:
+    description: |
+       Run 'terraform apply' on all EKS components
+    steps:
+      - command: terraform apply eks-vpc -s eks -auto-approve
+      - command: terraform apply eks -s eks -auto-approve

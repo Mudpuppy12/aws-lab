@@ -13,3 +13,10 @@ workflows:
       # Uncomment these for full removal
       #- command: terraform destroy oidc -s lab -auto-approve
       #- command: terraform apply codebuild -s lab -auto-approve
+      
+  eks-teardown:
+    description: |
+       Run 'terraform destroy' on EKS components
+    steps:
+      - command: terraform destroy eks -s eks -auto-approve
+      - command: terraform destroy eks-vpc -s lab -auto-approve
