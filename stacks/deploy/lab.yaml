@@ -1,6 +1,6 @@
 vars:
   stage: lab
-  environment: Lab 
+  environment: lab 
 
 import:
   - catalog/global
