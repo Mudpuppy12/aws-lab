@@ -33,5 +33,5 @@ components:
         s3_bucket: eks-ssm
         vpc_id: '{{ (atmos.Component "eks-vpc" .stack).outputs.vpc_id }}' 
         cidr: '{{ (atmos.Component "eks-vpc" .stack).outputs.cidr }}'
-        ssm_role: eks-ssm
+        ssm_role: ssm
 

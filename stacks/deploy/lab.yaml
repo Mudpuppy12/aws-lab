@@ -72,7 +72,7 @@ components:
         cidr: '{{ (atmos.Component "vpc" .stack).outputs.vpc_cidr_block }}'
         vpc_id: '{{ (atmos.Component "vpc" .stack).outputs.vpc_id }}'
         key_name: "Key1"
-        ssm_role_name: '{{ (atmos.Component "ssm" .stack).outputs.ssm_role_name }}'
+        ssm_role_name: '{{ (atmos.Component "ssm" .stack).outputs.ssm_role_name }}'       
     oidc:
        metadata:
           componet: "oidc"
