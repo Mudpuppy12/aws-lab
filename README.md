@@ -7,9 +7,24 @@ EC2 instances using github actions and a OIDC github provider. The deployment is
 SSM connections.
 
 # Buildout
+   For a Generic EC2 Lab
+
    ``` # atmos workflow buildall -f buildall ```
+   
+   For a EKS Lab
+   
+   ``` # atmos workflow eks-buildall -f buildall ```
+
+
 # Teardown
+
+   Generic EC2 Lab
+
    ``` # atmos workflow teardown -f teardown ```
+   
+   For EKS Lab
+
+   ``` # atmos workflow eks-teardown -f teardown ```
 
 It does not teardown the codebuild project, you can uncomment this to do so. Keep in mind it will not
 removed the github webhook. It must be deleted manually. I don't tear this down usually.
@@ -31,7 +46,9 @@ It will create an Identify provider for Github, allowing gitub actions to deploy
 environment
 
 ## EKS
-In Development
+After deploying use aws to generate kubeconfig
+
+``` # aws eks update-kubeconfig --name eks-lab-terraform ```
 
 ## Codebuild
 This will setup a codebuild project that will fire up a github runner for deployments into the VPC.
