@@ -7,6 +7,10 @@ output "vpc_id" {
   description = "VPC ID"
   value       = module.vpc.vpc_id
 }
+output "cidr" {
+  description = "VPC Cidr"
+  value       = var.cidr
+}
 
 output "private_subnets" {
   description = "Private subnet ids"

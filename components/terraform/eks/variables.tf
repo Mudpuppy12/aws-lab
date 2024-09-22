@@ -45,3 +45,9 @@ variable "vpc_id" {
   type        = string
   default     = ""
 }
+
+variable "ssm_role_name" {
+  description = "Name of SSM Role"
+  type        = string
+  default     = ""
+}

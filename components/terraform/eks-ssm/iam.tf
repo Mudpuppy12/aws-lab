@@ -47,7 +47,7 @@ resource "aws_iam_policy" "ec2_policy" {
 }
 
 resource "aws_iam_policy_attachment" "s3_attach" {
-  name       = "ssm-s3-put"
+  name       = "ssm-${var.environment}-s3-put"
   roles      = [aws_iam_role.ssm_role.name]
   policy_arn = aws_iam_policy.ec2_policy.arn
 
@@ -70,25 +70,25 @@ data "aws_iam_policy_document" "kms_policy" {
 
 resource "aws_iam_policy" "kms_policy" {
   policy = data.aws_iam_policy_document.kms_policy.json
-  name   = "kms-ssm-allow"
+  name   = "kms-ssm-${var.environment}-allow"
 }
 
 #### Attach AWS and Customer managed policies to the IAM role ####
 
 resource "aws_iam_policy_attachment" "ssm-attach" {
-  name       = "managed-ssm-policy-attach"
+  name       = "managed-ssm-${var.environment}-policy-attach"
   roles      = [aws_iam_role.ssm_role.name]
   policy_arn = var.ssm_policy_arn
 }
 
 resource "aws_iam_policy_attachment" "cloudwatch-attach" {
-  name       = "managed-cloudwatch-policy-attach"
+  name       = "managed-cloudwatch-${var.environment}-policy-attach"
   roles      = [aws_iam_role.ssm_role.name]
   policy_arn = var.cloudwatch_policy_arn
 }
 
 resource "aws_iam_policy_attachment" "kms-attach" {
-  name       = "ssm-kms-policy-attach"
+  name       = "ssm-kms-${var.environment}-policy-attach"
   roles      = [aws_iam_role.ssm_role.name]
   policy_arn = aws_iam_policy.kms_policy.arn
 }

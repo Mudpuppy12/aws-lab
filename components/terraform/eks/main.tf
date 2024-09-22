@@ -7,19 +7,14 @@ module "eks" {
   cluster_version = local.cluster_version
 
   vpc_id                   = var.vpc_id
-  subnet_ids               = local.public_subnets
-  control_plane_subnet_ids = local.intra_subnets
+  subnet_ids               = local.private_subnets
 
+  control_plane_subnet_ids = local.intra_subnets
   enable_cluster_creator_admin_permissions = true
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
 
-  enable_irsa               = true
-  create_kms_key            = false
-  enable_kms_key_rotation   = false
-  cluster_encryption_config = {}
-  
   # EKS Addons
   cluster_addons = {
     coredns                = {}
@@ -28,11 +23,20 @@ module "eks" {
     vpc-cni                = {}
   }
   
-  
   eks_managed_node_group_defaults = {
     ami_type       = "AL2023_x86_64_STANDARD"
     instance_types = ["m5.large"]
+ 
+    create_iam_role: true
+    iam_role_name = "${var.environment}-node-group"
 
+    iam_role_additional_policies = {
+        AmazonSSMManagedInstanceCore       = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+        CloudWatchLogsFullAccess           = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
+        kms-ssm-eks-lab-allow              = "arn:aws:iam::106613608949:policy/kms-ssm-eks-lab-allow",   
+        eks-lab-ssm_logs_policy            = "arn:aws:iam::106613608949:policy/eks-lab-ssm_logs_policy_us-east-1_106613608949"
+        
+    }
     iam_role_attach_cni_policy = true
   }
 

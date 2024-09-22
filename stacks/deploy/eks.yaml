@@ -5,6 +5,7 @@ vars:
 import:
   - catalog/global
 
+
 components:
   terraform:
     
@@ -16,12 +17,21 @@ components:
         cidr: 10.1.0.0/16 
     eks:
       mdetadata:
-        components: "eks"
+        component: "eks"
       vars:
         vpc_id: '{{ (atmos.Component "eks-vpc" .stack).outputs.vpc_id }}'
         private_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.private_subnets) }}'
         public_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.public_subnets) }}'
         intra_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.intra_subnets) }}'
         cluster_name: '{{ (atmos.Component "eks-vpc" .stack).outputs.cluster_name }}'
-
+        ssm_role_name: '{{ (atmos.Component "eks-ssm" .stack).outputs.ssm_role_name }}'
+   
+    eks-ssm:        
+      metadata: 
+         componet: eks-ssm          
+      vars:
+        s3_bucket: eks-ssm
+        vpc_id: '{{ (atmos.Component "eks-vpc" .stack).outputs.vpc_id }}' 
+        cidr: '{{ (atmos.Component "eks-vpc" .stack).outputs.cidr }}'
+        ssm_role: eks-ssm
 
