@@ -1,0 +1,15 @@
+vars:
+  stage: eks-lab
+  environment: eks-lab
+
+import:
+  - catalog/global
+
+components:
+  terraform:
+    eks-vpc:
+      metadata: 
+        componet: "eks-vpc"        
+      vars:    
+        cluster_name: eks-lab-terraform
+        cidr: 10.1.0.0/16 
