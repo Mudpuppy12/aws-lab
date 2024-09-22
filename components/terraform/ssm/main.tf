@@ -35,12 +35,12 @@ resource "aws_kms_key" "ssm_access_key" {
 }
 
 resource "aws_kms_alias" "ssm_key_alias" {
-  name          = "alias/kms/ssm-key"
+  name          = "alias/kms/ssm-${var.environment}-key"
   target_key_id = aws_kms_key.ssm_access_key.id
 }
 
 resource "aws_cloudwatch_log_group" "ssm_logs" {
-  name_prefix       = "ssm-log-group-"
+  name_prefix       = "ssm-${var.environment}-log-group-"
   retention_in_days = 30
   kms_key_id        = aws_kms_key.ssm_access_key.arn
 
