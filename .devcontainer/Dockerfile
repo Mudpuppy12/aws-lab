@@ -17,5 +17,9 @@ RUN curl -LO https://github.com/cloudposse/atmos/releases/download/v${ATMOS_VERS
     chmod +x ./atmos_${ATMOS_VERSION}_linux_arm64 && \
     mv ./atmos_${ATMOS_VERSION}_linux_arm64 /usr/local/bin/atmos
 
+RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_arm64/session-manager-plugin.deb" -o "session-manager-plugin.deb" && \
+    dpkg -i session-manager-plugin.deb && \
+    rm session-manager-plugin.deb
+
 RUN rm -rf /var/lib/apt/lists/*
 
