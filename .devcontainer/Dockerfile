@@ -17,4 +17,5 @@ RUN curl -LO https://github.com/cloudposse/atmos/releases/download/v${ATMOS_VERS
     chmod +x ./atmos_${ATMOS_VERSION}_linux_arm64 && \
     mv ./atmos_${ATMOS_VERSION}_linux_arm64 /usr/local/bin/atmos
 
+RUN rm -rf /var/lib/apt/lists/*
 

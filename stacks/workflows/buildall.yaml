@@ -21,3 +21,15 @@ workflows:
       - command: terraform apply eks-vpc -s eks -auto-approve
       - command: terraform apply eks-ssm -s eks -auto-approve
       - command: terraform apply eks -s eks -auto-approve
+  clean:
+    descripton: |
+       Run 'atmos terraform clean on all components'
+    steps:
+      - command: terraform clean eks-vpc -s eks 
+      - command: terraform clean eks-ssm -s eks
+      - command: terraform clean eks -s eks
+      - command: terraform clean vpc -s lab 
+      - command: terraform clean ssm -s lab 
+      - command: terraform clean ec2 -s lab 
+      - command: terraform clean codebuild -s lab 
+      - command: terraform clean oidc -s lab 
