@@ -1,6 +1,10 @@
 # aws-lab
 AWS Lab environment for testing using atmos tooling for terraform and GitHub Actions runner.
+
 This was created using the atmos tooling for Terraform.
+
+Install Docker desktop for the environment to build you the tools needed
+for deployment. The DevContainer has the full tooling chain.
 
 This lab is used in conjunction with aws-github repo to deploy ansible playbooks into the
 EC2 instances using github actions and a OIDC github provider. The deployment is done over
