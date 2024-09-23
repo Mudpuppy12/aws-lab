@@ -19,4 +19,5 @@ workflows:
        Run 'terraform apply' on all EKS components
     steps:
       - command: terraform apply eks-vpc -s eks -auto-approve
+      - command: terraform apply eks-ssm -s eks -auto-approve
       - command: terraform apply eks -s eks -auto-approve
