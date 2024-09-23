@@ -51,3 +51,15 @@ variable "ssm_role_name" {
   type        = string
   default     = ""
 }
+
+variable "log_arn" {
+  description = "ARN for log access"
+  type        = string
+  default     = ""
+}
+
+variable "kms_arn" {
+  description = "ARN for kys access key for ssm"
+  type        = string
+  default     = ""
+}

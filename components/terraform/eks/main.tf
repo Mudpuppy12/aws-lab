@@ -33,9 +33,8 @@ module "eks" {
     iam_role_additional_policies = {
         AmazonSSMManagedInstanceCore       = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
         CloudWatchLogsFullAccess           = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
-        kms-ssm-eks-lab-allow              = "arn:aws:iam::106613608949:policy/kms-ssm-eks-lab-allow",   
-        eks-lab-ssm_logs_policy            = "arn:aws:iam::106613608949:policy/eks-lab-ssm_logs_policy_us-east-1_106613608949"
-        
+        kms-ssm-eks-lab-allow              = var.kms_arn ,  
+        eks-lab-ssm_logs_policy            = var.log_arn ,
     }
     iam_role_attach_cni_policy = true
   }

@@ -25,6 +25,8 @@ components:
         intra_subnets: '{{ toRawJson ((atmos.Component "eks-vpc" .stack).outputs.intra_subnets) }}'
         cluster_name: '{{ (atmos.Component "eks-vpc" .stack).outputs.cluster_name }}'
         ssm_role_name: '{{ (atmos.Component "eks-ssm" .stack).outputs.ssm_role_name }}'
+        log_arn: '{{ (atmos.Component "eks-ssm" .stack).outputs.log_arn }}'
+        kms_arn: '{{ (atmos.Component "eks-ssm" .stack).outputs.kms_arn }}'
    
     eks-ssm:        
       metadata: 
