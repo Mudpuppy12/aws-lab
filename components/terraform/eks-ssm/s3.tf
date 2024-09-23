@@ -1,15 +1,5 @@
 #### Create the S3 bucket ####
 
-resource "aws_s3_bucket" "ssm_s3_bucket" {
-  bucket              = "${var.s3_bucket}-${data.aws_caller_identity.current.id}-${data.aws_region.current.name}"
-  object_lock_enabled = true
-  force_destroy       = true
-  tags = {
-    name     = "ssm-logs"
-    DataType = "SENSITIVE"
-  }
-}
-
 resource "aws_s3_bucket" "log_bucket" {
   bucket_prefix = "ssm-log-bucket-${var.environment}-"
   force_destroy = true
@@ -40,7 +30,7 @@ resource "aws_s3_bucket_policy" "allow_write_logs" {
 #### Configure server side encryption with SSE-S3 ####
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "s3_bucket_encrypt" {
-  bucket = aws_s3_bucket.ssm_s3_bucket.bucket
+  bucket = aws_s3_bucket.log_bucket.bucket
 
   rule {
     apply_server_side_encryption_by_default {
@@ -52,7 +42,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3_bucket_encrypt
 #### Enable versioning on the bucket ####
 
 resource "aws_s3_bucket_versioning" "versioning_s3" {
-  bucket = aws_s3_bucket.ssm_s3_bucket.id
+  bucket = aws_s3_bucket.log_bucket.id
   versioning_configuration {
     status = "Enabled"
   }
@@ -61,20 +51,10 @@ resource "aws_s3_bucket_versioning" "versioning_s3" {
 #### Configure block public access policies on the bucket ####
 
 resource "aws_s3_bucket_public_access_block" "block_public_s3" {
-  bucket = aws_s3_bucket.ssm_s3_bucket.id
+  bucket = aws_s3_bucket.log_bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-}
-
-#### Enable server side logging on the S3 bucket ####
-
-resource "aws_s3_bucket_logging" "server_logs" {
-
-  bucket = aws_s3_bucket.ssm_s3_bucket.id
-
-  target_bucket = aws_s3_bucket.log_bucket.id
-  target_prefix = "servers-logs/"
 }

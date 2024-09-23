@@ -17,10 +17,6 @@ resource "aws_iam_role" "ssm_role" {
       },
     ]
   })
-
-  tags = {
-    ssmdemo = "true"
-  }
 }
 
 #### Create Policy to allow instance profile to put objects in the S3 bucket ####
@@ -36,11 +32,12 @@ resource "aws_iam_policy" "ec2_policy" {
         Action = [
           "s3:GetObject",
           "s3:PutObject",
-          "s3:PutObjectAcl"
+          "s3:PutObjectAcl",
+          "s3:GetEncryptionConfiguration"
 
         ]
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.ssm_s3_bucket.arn}/*"
+        Resource = "${aws_s3_bucket.log_bucket.arn}*"
       },
     ]
   })
