@@ -25,7 +25,7 @@
    
     {
       "source": "${localEnv:HOME}/.aws",
-      "target": "/Users/dennis/.aws",
+      "target": "${localEnv:HOME}/.aws",
       "type": "bind"
     },
     {
