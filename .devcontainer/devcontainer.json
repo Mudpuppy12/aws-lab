@@ -13,6 +13,7 @@
     "ghcr.io/devcontainers/features/terraform:1": {}
 },
 
+"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 
   // Update the source path
   "mounts": [
