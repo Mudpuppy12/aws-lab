@@ -38,5 +38,12 @@
       "target": "/home/vscode/.kube",
       "type": "bind"
     }
-  ]
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "flyfly6.terminal-in-status-bar"
+      ]
+    }
+  }
 }
