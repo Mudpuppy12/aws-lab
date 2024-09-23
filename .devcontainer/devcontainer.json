@@ -15,7 +15,6 @@
 
 
 "postStartCommand": "git config --global --add safe.directory .",
-"postAttachCommand": "bash",
 
 // Update the source path
   "mounts": [
