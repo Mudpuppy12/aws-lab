@@ -1,0 +1,41 @@
+{
+  "name": "DevOps CLI",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  // 
+  
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/aws-cdk:2": {},
+    "ghcr.io/devcontainers/features/terraform:1": {}
+},
+
+
+  // Update the source path
+  "mounts": [
+    {
+      "source": "/Users/dennis/.ssh",
+      "target": "/home/vscode/.ssh",
+      "type": "bind"
+    },
+   
+    {
+      "source": "/Users/dennis/.aws",
+      "target": "/Users/dennis/.aws",
+      "type": "bind"
+    },
+    {
+      "source": "/Users/dennis/.aws",
+      "target": "/home/vscode/.aws",
+      "type": "bind"
+    },
+    {
+      "source": "/Users/dennis/.kube",
+      "target": "/home/vscode/.kube",
+      "type": "bind"
+    }
+  ]
+}
