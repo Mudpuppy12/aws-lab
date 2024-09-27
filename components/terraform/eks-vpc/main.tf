@@ -14,8 +14,9 @@ module "vpc" {
 
   map_public_ip_on_launch = true
 
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
+  # We prob don't need a nat gateway if we are using ELB's.
+  enable_nat_gateway   = false
+  #single_nat_gateway   = true
   enable_dns_hostnames = true
 
   enable_flow_log                      = true
