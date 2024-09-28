@@ -49,17 +49,17 @@ variable "vpc_id" {
 variable "ssm_role_name" {
   description = "Name of SSM Role"
   type        = string
-  default     = ""
+  default     = "ssm"
 }
 
 variable "log_arn" {
   description = "ARN for log access"
   type        = string
-  default     = ""
+  default     = "arn:aws:iam::106613608949:policy/ssm_logs_policy_us-east-1_106613608949"
 }
 
 variable "kms_arn" {
   description = "ARN for kys access key for ssm"
   type        = string
-  default     = ""
+  default     = "arn:aws:iam::106613608949:policy/kms-ssm-allow"
 }

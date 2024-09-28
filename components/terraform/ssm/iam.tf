@@ -2,7 +2,7 @@
 
 resource "aws_iam_role" "ssm_role" {
 
-  name = "${var.environment}-${var.ssm_role}"
+  name = "${var.ssm_role}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -17,16 +17,12 @@ resource "aws_iam_role" "ssm_role" {
       },
     ]
   })
-
-  tags = {
-    ssmdemo = "true"
-  }
 }
 
 #### Create Policy to allow instance profile to put objects in the S3 bucket ####
 
 resource "aws_iam_policy" "ec2_policy" {
-  name        = "${var.environment}-ssm_logs_policy_${data.aws_region.current.name}_${data.aws_caller_identity.current.account_id}"
+  name        = "ssm_logs_policy_${data.aws_region.current.name}_${data.aws_caller_identity.current.account_id}"
   description = "Policy allowing put and get operations for ec2 to place session logs in specified bucket"
 
   policy = jsonencode({
@@ -36,16 +32,16 @@ resource "aws_iam_policy" "ec2_policy" {
         Action = [
           "s3:GetObject",
           "s3:PutObject",
-          "s3:PutObjectAcl"
+          "s3:PutObjectAcl",
+          "s3:GetEncryptionConfiguration"
 
         ]
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.ssm_s3_bucket.arn}/*"
+        Resource = "${aws_s3_bucket.log_bucket.arn}*"
       },
     ]
   })
 }
-
 
 #### Create policy to allow instance role to use the CloudWatch key and SSM preference key to encrypt/decrypt data ####
 
@@ -64,7 +60,7 @@ data "aws_iam_policy_document" "kms_policy" {
 
 resource "aws_iam_policy" "kms_policy" {
   policy = data.aws_iam_policy_document.kms_policy.json
-  name   = "kms-ssm-${var.environment}-allow"
+  name   = "kms-ssm-allow"
 }
 
 #### Attach AWS and Customer managed policies to the IAM role ####

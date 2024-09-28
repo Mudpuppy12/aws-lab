@@ -32,18 +32,6 @@ variable "team" {
   default     = ""
 }
 
-
-variable "vpc_id" {
-  type    = string
-  default = ""
-}
-
-variable "cidr" {
-  description = "VPC CIDR Block"
-  type        = string
-  default     = ""
-}
-
 variable "stage" {
   description = "Stage where it will be deployed"
   type        = string
