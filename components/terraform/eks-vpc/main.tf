@@ -15,8 +15,8 @@ module "vpc" {
   map_public_ip_on_launch = true
 
   # We prob don't need a nat gateway if we are using ELB's.
-  enable_nat_gateway   = false
-  #single_nat_gateway   = true
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
   enable_dns_hostnames = true
 
   enable_flow_log                      = true
@@ -31,7 +31,7 @@ module "vpc" {
   private_subnet_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"           = 1
-    SSM = "Y"
+    SSM                                         = "Y"
   }
 
   tags = local.tags
