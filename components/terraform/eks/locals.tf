@@ -7,7 +7,7 @@ locals {
   public_subnets  = jsondecode(var.public_subnets)
   intra_subnets   = jsondecode(var.intra_subnets)
 
-  cluster_version = "1.30"
+  cluster_version = "1.31"
   tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
